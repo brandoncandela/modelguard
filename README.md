@@ -2,7 +2,9 @@
 
 **Financial crime model risk management and AI governance for a fictional international bank.**
 
-![ModelGuard executive overview](docs/social-preview.jpg)
+![A tour of ModelGuard: executive overview, model inventory, monitoring, a simulated month of severe drift creating new breaches, validation, EU AI Act readiness, LLM evaluation, committee reporting and the audit trail](docs/demo.gif)
+
+*A tour of the running app with its seeded data, including a month of severe drift simulated live.*
 
 ModelGuard is a working application, not a mockup. It keeps a bank's inventory of financial crime models, measures how each model performs every month from the records it actually scored, runs independent validations and tracks findings to closure, assesses AI systems against the EU AI Act, maps internal controls to regulation, and produces committee reports as PDFs. Every change is written to a tamper-evident audit trail.
 
