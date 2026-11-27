@@ -1,0 +1,9 @@
+line-length = 120
+target-version = "py39"
+
+[lint]
+select = ["E4", "E7", "E9", "F", "B"]
+ignore = ["B008"]  # FastAPI dependencies use calls in argument defaults
+
+[lint.per-file-ignores]
+"tests/*" = ["B011"]
