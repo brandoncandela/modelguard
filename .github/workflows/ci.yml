@@ -10,8 +10,10 @@ permissions:
 
 jobs:
   backend-sqlite:
-    runs-on: ubuntu-latest
+    # Python 3.9 builds exist for Ubuntu 24.04 but not for the newer ubuntu-latest image.
+    runs-on: ubuntu-24.04
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.9", "3.12"]
     defaults:
@@ -26,7 +28,7 @@ jobs:
           cache-dependency-path: backend/requirements*.txt
       - run: pip install -r requirements-dev.txt
       - run: ruff check app tests
-      - run: pytest -q
+      - run: python -m pytest -q
 
   backend-postgres:
     runs-on: ubuntu-latest
@@ -53,7 +55,7 @@ jobs:
           cache: pip
           cache-dependency-path: backend/requirements*.txt
       - run: pip install -r requirements-dev.txt
-      - run: pytest -q
+      - run: python -m pytest -q
 
   frontend:
     runs-on: ubuntu-latest
