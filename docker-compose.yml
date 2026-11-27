@@ -1,0 +1,44 @@
+# ModelGuard with PostgreSQL. Copy .env.example to .env and set MODELGUARD_SECRET_KEY,
+# MODELGUARD_DEMO_PASSWORD and POSTGRES_PASSWORD first. Then: docker compose up --build
+# The web app is served on http://localhost:8080 and the API docs on http://localhost:8000/docs.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: modelguard
+      POSTGRES_USER: modelguard
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U modelguard -d modelguard"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./backend
+    env_file: .env
+    environment:
+      MODELGUARD_ENV: ${MODELGUARD_ENV:-development}
+      MODELGUARD_DATABASE_URL: postgresql://modelguard:${POSTGRES_PASSWORD}@db:5432/modelguard
+      MODELGUARD_SEED_ON_START: "true"
+      MODELGUARD_CORS_ORIGINS: http://localhost:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - apidata:/app/var
+
+  web:
+    build: ./frontend
+    depends_on:
+      - api
+    ports:
+      - "8080:80"
+
+volumes:
+  pgdata:
+  apidata:

@@ -1,0 +1,29 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local data, uploads and generated files
+backend/var/
+var/
+*.db
+*.db-journal
+
+# Node
+node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
+*.tsbuildinfo
