@@ -251,7 +251,7 @@ function BiasTab({ system, canRun, onChange }: { system: any; canRun: boolean; o
         <Panel title={`Adverse outcome rate by ${t.attribute}`}>
           <Plot ariaLabel="Bar chart of adverse outcome and false positive rates by group" height={240} data={[
             { type: "bar", name: "Adverse outcome rate", x: t.groups.map((g: any) => g.group), y: t.groups.map((g: any) => g.adverse_rate), marker: { color: COLORS.accent } },
-            { type: "bar", name: "False positive rate", x: t.groups.map((g: any) => g.group), y: t.groups.map((g: any) => g.false_positive_rate), marker: { color: COLORS.orange } }]}
+            { type: "bar", name: "False positive rate", x: t.groups.map((g: any) => g.group), y: t.groups.map((g: any) => g.false_positive_rate), marker: { color: COLORS.light } }]}
             layout={{ barmode: "group", yaxis: { tickformat: ".1%", gridcolor: "#EEF2F7" } }} />
         </Panel>
         <Panel bodyClass="">

@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens. Light enterprise theme in the portfolio's blue family. Swap these values to retheme. */
+/* Design tokens for the light enterprise theme: white and neutral surfaces, a blue accent, muted teal for good status,
+   compact tables and no decorative motion. Swap these values to retheme. */
 :root {
   --bg: 245 246 248;
   --surface: 255 255 255;
@@ -30,15 +31,15 @@ body {
   .panel { @apply min-w-0 bg-surface border border-line rounded-lg; }
   .panel-h { @apply flex items-center justify-between gap-3 px-4 py-2.5 border-b border-line; }
   .panel-t { @apply text-[13px] font-semibold text-ink; }
-  .btn { @apply inline-flex items-center gap-1.5 rounded-md px-3 h-8 text-[12.5px] font-medium border transition-colors disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn { @apply inline-flex items-center gap-1.5 rounded-md px-3 h-8 text-[12.5px] font-medium border disabled:opacity-50 disabled:cursor-not-allowed; }
   .btn-primary { @apply btn bg-accent border-accent text-white hover:bg-accent/90; }
   .btn-ghost { @apply btn bg-surface border-line text-ink hover:bg-sunken; }
   .btn-danger { @apply btn bg-surface border-bad/40 text-bad hover:bg-bad/5; }
   .input { @apply h-8 w-full rounded-md border border-line bg-surface px-2.5 text-[13px] placeholder:text-muted/70 focus:border-accent focus:outline-none; }
   .textarea { @apply w-full rounded-md border border-line bg-surface px-2.5 py-1.5 text-[13px] focus:border-accent focus:outline-none; }
   .label { @apply block text-xxs font-medium uppercase tracking-wide text-muted mb-1; }
-  .th { @apply sticky top-0 z-10 bg-sunken text-left text-xxs font-semibold uppercase tracking-wide text-muted px-3 py-2 border-b border-line whitespace-nowrap; }
-  .td { @apply px-3 py-2 border-b border-line align-top; }
+  .th { @apply sticky top-0 z-10 bg-sunken text-left text-xxs font-semibold uppercase tracking-wide text-muted px-3 py-1.5 border-b border-line whitespace-nowrap; }
+  .td { @apply px-3 py-1.5 border-b border-line align-top; }
   .tr-click { @apply cursor-pointer hover:bg-accent-soft/50; }
   .kv-k { @apply text-xxs uppercase tracking-wide text-muted; }
   .kv-v { @apply text-[13px] text-ink; }

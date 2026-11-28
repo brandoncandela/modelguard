@@ -1,5 +1,7 @@
 # ModelGuard
 
+[![CI](https://github.com/brandoncandela/modelguard/actions/workflows/ci.yml/badge.svg)](https://github.com/brandoncandela/modelguard/actions/workflows/ci.yml)
+
 **Financial crime model risk management and AI governance for a fictional international bank.**
 
 ![A tour of ModelGuard: executive overview, model inventory, monitoring, a simulated month of severe drift creating new breaches, validation, EU AI Act readiness, LLM evaluation, committee reporting and the audit trail](docs/demo.gif)
