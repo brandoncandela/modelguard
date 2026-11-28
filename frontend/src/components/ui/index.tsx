@@ -9,7 +9,7 @@ const TONES: Record<Tone, string> = {
   amber: "bg-warn/10 text-warn border-warn/25",
   orange: "bg-high/10 text-high border-high/25",
   red: "bg-bad/10 text-bad border-bad/25",
-  slate: "bg-slate-100 text-slate-600 border-slate-200",
+  slate: "bg-sunken text-muted border-line",
 };
 
 export function Badge({ tone = "neutral", children, title }: { tone?: Tone; children: ReactNode; title?: string }) {
@@ -49,7 +49,7 @@ export const StatusBadge = ({ s }: { s?: string | null }) =>
   s ? <Badge tone={STATUS[s] ?? "neutral"}>{s}</Badge> : <span className="text-muted">–</span>;
 
 export function Dot({ tone = "neutral" }: { tone?: Tone }) {
-  const c = { neutral: "bg-muted", blue: "bg-accent", green: "bg-ok", amber: "bg-warn", orange: "bg-high", red: "bg-bad", slate: "bg-slate-400" }[tone];
+  const c = { neutral: "bg-muted", blue: "bg-accent", green: "bg-ok", amber: "bg-warn", orange: "bg-high", red: "bg-bad", slate: "bg-muted/50" }[tone];
   return <span className={`inline-block h-1.5 w-1.5 rounded-full ${c}`} />;
 }
 
@@ -101,7 +101,7 @@ export function Tabs({ tabs, value, onChange }: { tabs: { id: string; label: Rea
 export function Spinner({ label = "Loading" }: { label?: string }) {
   return (
     <div className="flex items-center gap-2 p-6 text-muted" role="status">
-      <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-line border-t-accent" />
+      <span className="h-3.5 w-3.5 animate-spin rounded-full motion-reduce:animate-none border-2 border-line border-t-accent" />
       {label}
     </div>
   );
@@ -137,7 +137,7 @@ export function Drawer({ open, onClose, title, children, width = "max-w-3xl" }:
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-40 flex justify-end">
-      <div className="absolute inset-0 bg-slate-900/25" onClick={onClose} />
+      <div className="absolute inset-0 bg-ink/25" onClick={onClose} />
       <aside role="dialog" aria-modal="true" className={`relative flex h-full w-full ${width} flex-col bg-surface shadow-xl`}>
         <header className="flex items-start justify-between gap-4 border-b border-line px-5 py-3">
           <div className="min-w-0 flex-1">{title}</div>
@@ -154,7 +154,7 @@ export function Modal({ open, onClose, title, children, footer }:
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-slate-900/30" onClick={onClose} />
+      <div className="absolute inset-0 bg-ink/30" onClick={onClose} />
       <div role="dialog" aria-modal="true" className="relative w-full max-w-lg rounded-lg bg-surface shadow-xl">
         <div className="border-b border-line px-5 py-3 text-[14px] font-semibold">{title}</div>
         <div className="max-h-[70vh] space-y-3 overflow-y-auto px-5 py-4">{children}</div>

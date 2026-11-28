@@ -195,13 +195,13 @@ function TrendCharts({ data }: { data: any }) {
       { type: "scatter", mode: "lines", name: `${metricLabel[k]} breach`, x, y: x.map(() => last.breach_limit), line: { color, dash: "dash", width: 1 }, hoverinfo: "skip" },
     ];
   };
-  const palette = [COLORS.accent, COLORS.teal, "#7C3AED", COLORS.orange];
+  const palette = [COLORS.accent, COLORS.ink, COLORS.mid, COLORS.slate];
   const perf = [...perfKeys.map((k, i) => ({ type: "scatter", mode: "lines+markers", name: metricLabel[k], x, y: s[k].map((p: any) => p.value), line: { color: palette[i], width: 2 },
-    marker: { size: 6, color: s[k].map((p: any) => (p.status === "Breach" ? COLORS.red : p.status === "Warning" ? "#F59E0B" : palette[i])) } })), ...limitLines("recall", COLORS.red)];
+    marker: { size: 6, color: s[k].map((p: any) => (p.status === "Breach" ? COLORS.red : p.status === "Warning" ? COLORS.amber : palette[i])) } })), ...limitLines("recall", COLORS.red)];
   const psi = ["psi", "max_feature_psi", "dq_exception_rate"].filter((k) => s[k]).map((k, i) => ({ type: "scatter", mode: "lines+markers", name: metricLabel[k], x,
-    y: s[k].map((p: any) => p.value), line: { color: [COLORS.accent, COLORS.orange, "#7C3AED"][i], width: 2 }, yaxis: k === "dq_exception_rate" ? "y2" : "y" }));
+    y: s[k].map((p: any) => p.value), line: { color: [COLORS.accent, COLORS.mid, COLORS.ink][i], width: 2 }, yaxis: k === "dq_exception_rate" ? "y2" : "y" }));
   const shapes = [...shading(x, ref),
-    { type: "line", xref: "paper", x0: 0, x1: 1, y0: 0.1, y1: 0.1, line: { color: "#F59E0B", dash: "dot", width: 1 } },
+    { type: "line", xref: "paper", x0: 0, x1: 1, y0: 0.1, y1: 0.1, line: { color: COLORS.amber, dash: "dot", width: 1 } },
     { type: "line", xref: "paper", x0: 0, x1: 1, y0: 0.25, y1: 0.25, line: { color: COLORS.red, dash: "dash", width: 1 } }];
   return (
     <div className="grid gap-4 2xl:grid-cols-2">
@@ -230,7 +230,7 @@ function DriftView({ run }: { run: any }) {
       <div className="grid gap-4 2xl:grid-cols-2">
         <Panel title={`Score distribution, reference vs ${run.period}`} actions={<span className="text-[12px]">PSI <b>{dec(psiM?.value)}</b> · {psiM?.details?.band}</span>}>
           <Plot ariaLabel="Bar chart comparing reference and current score shares by decile bin" height={280} data={[
-            { type: "bar", name: "Reference", x: bins.map((b: any) => b.bin), y: bins.map((b: any) => b.expected_share), marker: { color: "#CBD5E1" },
+            { type: "bar", name: "Reference", x: bins.map((b: any) => b.bin), y: bins.map((b: any) => b.expected_share), marker: { color: COLORS.ref },
               hovertext: bins.map(label), hoverinfo: "text+y" },
             { type: "bar", name: run.period, x: bins.map((b: any) => b.bin), y: bins.map((b: any) => b.actual_share), marker: { color: COLORS.accent },
               hovertext: bins.map(label), hoverinfo: "text+y" }]}
@@ -239,8 +239,8 @@ function DriftView({ run }: { run: any }) {
         {fsel && (
           <Panel title={`Input feature: ${fsel.feature}`} actions={<span className="text-[12px]">{fsel.test} · PSI <b>{dec(fsel.psi)}</b> · <StatusBadge s={fsel.level === "Stable" ? "Within limits" : fsel.level === "Moderate" ? "Warning" : "Breach"} /></span>}>
             <Plot ariaLabel={`Bar chart comparing reference and current distribution of ${fsel.feature}`} height={280} data={[
-              { type: "bar", name: "Reference", x: fsel.bins.map((b: any) => (fsel.feature_type === "numeric" ? `Bin ${b.bin}` : b.bin)), y: fsel.bins.map((b: any) => b.expected_share), marker: { color: "#CBD5E1" } },
-              { type: "bar", name: run.period, x: fsel.bins.map((b: any) => (fsel.feature_type === "numeric" ? `Bin ${b.bin}` : b.bin)), y: fsel.bins.map((b: any) => b.actual_share), marker: { color: COLORS.orange } }]}
+              { type: "bar", name: "Reference", x: fsel.bins.map((b: any) => (fsel.feature_type === "numeric" ? `Bin ${b.bin}` : b.bin)), y: fsel.bins.map((b: any) => b.expected_share), marker: { color: COLORS.ref } },
+              { type: "bar", name: run.period, x: fsel.bins.map((b: any) => (fsel.feature_type === "numeric" ? `Bin ${b.bin}` : b.bin)), y: fsel.bins.map((b: any) => b.actual_share), marker: { color: COLORS.accent } }]}
               layout={{ barmode: "group", yaxis: { tickformat: ".0%", gridcolor: "#EEF2F7" } }} />
           </Panel>)}
       </div>

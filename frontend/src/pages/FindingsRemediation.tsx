@@ -40,12 +40,12 @@ export default function FindingsRemediation() {
         <div className="grid gap-4 xl:grid-cols-2">
           <Panel title="Open findings by days past target">
             <Plot ariaLabel="Bar chart of open findings by aging bucket" height={220} data={[{ type: "bar", x: Object.keys(s.aging), y: Object.values(s.aging),
-              marker: { color: [COLORS.teal, "#F59E0B", COLORS.orange, COLORS.red] } }]} layout={{ yaxis: { dtick: 1, gridcolor: "#EEF2F7" } }} />
+              marker: { color: [COLORS.teal, COLORS.amber, COLORS.orange, COLORS.red] } }]} layout={{ yaxis: { dtick: 1, gridcolor: "#EEF2F7" } }} />
           </Panel>
           <Panel title="Findings by severity and status">
             <Plot ariaLabel="Stacked bar chart of findings by severity and status" height={220}
               data={s.statuses.map((st: string, i: number) => ({ type: "bar", name: st, x: s.severities, y: s.severities.map((sv: string) => s.by_severity_status[sv]?.[st] ?? 0),
-                marker: { color: [COLORS.red, "#F59E0B", COLORS.accent, "#7C3AED", COLORS.teal, COLORS.slate][i] } }))}
+                marker: { color: [COLORS.red, COLORS.amber, COLORS.accent, COLORS.light, COLORS.teal, COLORS.slate][i] } }))}
               layout={{ barmode: "stack", yaxis: { dtick: 2, gridcolor: "#EEF2F7" } }} />
           </Panel>
         </div>)}

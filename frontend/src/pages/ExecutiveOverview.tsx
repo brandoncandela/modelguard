@@ -25,7 +25,7 @@ export default function ExecutiveOverview() {
       breaches: [
         { type: "bar", name: "Critical", x, y: sev("Critical"), marker: { color: COLORS.red } },
         { type: "bar", name: "High", x, y: sev("High"), marker: { color: COLORS.orange } },
-        { type: "bar", name: "Medium", x, y: sev("Medium"), marker: { color: "#F59E0B" } },
+        { type: "bar", name: "Medium", x, y: sev("Medium"), marker: { color: COLORS.amber } },
       ],
       findings: [
         { type: "scatter", mode: "lines+markers", name: "Open", x, y: ps.map((p) => p.open_findings), line: { color: COLORS.accent } },
@@ -37,7 +37,7 @@ export default function ExecutiveOverview() {
       ],
       validations: ["Approved", "Conditionally Approved", "Rejected"].map((s, i) => ({
         type: "bar", name: s, x: quarters, y: quarters.map((qq) => q4[qq][s] ?? 0),
-        marker: { color: [COLORS.teal, "#F59E0B", COLORS.red][i] },
+        marker: { color: [COLORS.teal, COLORS.amber, COLORS.red][i] },
       })),
       shapes: shade, annotations: annot,
     };
