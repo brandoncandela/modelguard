@@ -58,7 +58,7 @@ export default function AppShell() {
       </aside>
       {open && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-slate-900/30" onClick={() => setOpen(false)} />
+          <div className="absolute inset-0 bg-ink/30" onClick={() => setOpen(false)} />
           <aside className="relative h-full w-64 bg-surface shadow-xl">
             <div className="flex h-14 items-center border-b border-line px-4"><Logo /></div>{nav}
           </aside>

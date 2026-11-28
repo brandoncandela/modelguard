@@ -4,7 +4,11 @@ import { useEffect, useRef } from "react";
 let plotly: Promise<any> | null = null;
 const load = () => (plotly ??= import("plotly.js-dist-min").then((m: any) => m.default ?? m));
 
-export const COLORS = { accent: "#1E4DB7", teal: "#0F766E", amber: "#B45309", orange: "#EA580C", red: "#B91C1C", slate: "#94A3B8", light: "#93C5FD" };
+// Data series use the blue family and neutral greys. Teal, amber, orange and red only carry status meaning.
+export const COLORS = {
+  accent: "#1E4DB7", mid: "#60A5FA", light: "#93C5FD", ink: "#334155", slate: "#94A3B8", ref: "#CBD5E1",
+  teal: "#0F766E", amber: "#B45309", orange: "#EA580C", red: "#B91C1C",
+};
 
 export function Plot({ data, layout, height = 260, ariaLabel }: { data: any[]; layout?: any; height?: number; ariaLabel: string }) {
   const ref = useRef<HTMLDivElement>(null);
